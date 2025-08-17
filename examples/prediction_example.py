@@ -84,8 +84,12 @@ def plot_prediction(kline_df, pred_df):
     ax2.legend(loc='upper left', fontsize=12)
     ax2.grid(True)
 
+    # Ensure figs directory exists
+    os.makedirs('./figs', exist_ok=True)
+    # Save plot with timestamp
+    timestamp = pd.Timestamp.now().strftime('%Y%m%d_%H%M%S')
     plt.tight_layout()
-    plt.show()
+    plt.savefig(f'./figs/prediction_{timestamp}.png')
 
 
 # 1. Load Model and Tokenizer
@@ -134,4 +138,3 @@ kline_df = df.loc[:lookback+pred_len-1]
 
 # visualize
 plot_prediction(kline_df, pred_df)
-
