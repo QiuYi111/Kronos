@@ -1,9 +1,10 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import sys
-sys.path.append("../")
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from model import Kronos, KronosTokenizer, KronosPredictor
-
+import numpy as np
 
 def plot_prediction(kline_df, pred_df):
     pred_df.index = kline_df.index[-pred_df.shape[0]:]
